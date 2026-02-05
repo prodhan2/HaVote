@@ -12,25 +12,25 @@
             margin: 0;
             padding: 0;
         }
-
+        
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6f4ea 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             touch-action: none;
         }
-
-        /* AppBar with Bangladesh flag colors */
+        
+        /* App Bar - Bangladesh colors */
         .app-bar {
-            background: linear-gradient(90deg, #006A4E 0%, #F42A41 100%);
+            background: linear-gradient(90deg, #006A4E 0%, #C21807 100%); /* Green to Red */
             padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -45,12 +45,14 @@
         .app-logo {
             height: 40px;
             width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         .app-bar h1 {
             font-size: 1.6rem;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
         }
 
         .nav-buttons {
@@ -59,7 +61,7 @@
         }
 
         .nav-btn {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
             border-radius: 20px;
@@ -71,10 +73,11 @@
             align-items: center;
             gap: 5px;
             text-decoration: none;
+            backdrop-filter: blur(5px);
         }
 
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
 
@@ -90,7 +93,7 @@
         .mobile-nav {
             display: none;
             flex-direction: column;
-            background: linear-gradient(to bottom, #006A4E, #F42A41);
+            background: linear-gradient(90deg, #006A4E 0%, #C21807 100%);
             position: fixed;
             top: 0;
             left: -250px;
@@ -98,7 +101,7 @@
             height: 100%;
             z-index: 99;
             padding: 20px;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
             transition: left 0.3s ease;
         }
 
@@ -114,57 +117,50 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .mobile-nav-btn:last-child {
             border-bottom: none;
         }
 
+        /* Main Content Layout */
         .main-content {
             flex: 1;
             display: flex;
-            flex-direction: column;
             padding: 20px;
             width: 100%;
-        }
-
-        .desktop-layout {
-            display: none;
-            flex-direction: row;
-            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
         }
-
+        
+        /* Frame Selection Panel */
         .frame-panel {
-            flex: 0 0 200px;
+            flex: 0 0 220px;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            padding: 10px;
-            max-height: 600px;
+            padding: 15px 10px;
+            margin-right: 20px;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #006A4E #f0f0f0;
+            max-height: 600px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .frame-panel::-webkit-scrollbar {
-            width: 8px;
+        
+        .frame-title {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #006A4E;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #C21807;
         }
-
-        .frame-panel::-webkit-scrollbar-track {
-            background: #f0f0f0;
-            border-radius: 4px;
-        }
-
-        .frame-panel::-webkit-scrollbar-thumb {
-            background: #006A4E;
-            border-radius: 4px;
-        }
-
-        .frame-option-vertical {
+        
+        .frame-option {
+            flex: 0 0 auto;
             width: 100%;
             height: 100px;
             border-radius: 10px;
@@ -174,36 +170,32 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .frame-option-vertical:hover {
+        
+        .frame-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .frame-option.active {
+            border-color: #C21807;
             transform: scale(1.03);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(194, 24, 7, 0.3);
         }
-
-        .frame-option-vertical.active {
-            border-color: #F42A41;
-        }
-
-        .frame-option-vertical img {
+        
+        .frame-option img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-        .preview-section {
+        
+        /* Preview Area */
+        .preview-area {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
-        .mobile-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
+        
         #container {
             position: relative;
             width: 80vmin;
@@ -216,7 +208,7 @@
             background: white;
             overflow: hidden;
         }
-
+        
         #photo-wrapper {
             position: absolute;
             top: 0;
@@ -228,7 +220,7 @@
             border-radius: 10px;
             z-index: 1;
         }
-
+        
         #user-photo {
             position: absolute;
             top: 0;
@@ -237,7 +229,7 @@
             touch-action: none;
             user-select: none;
         }
-
+        
         #frame {
             position: absolute;
             top: 0;
@@ -248,61 +240,8 @@
             border-radius: 10px;
             z-index: 2;
         }
-
-        .frame-selection {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 15px 10px;
-            margin: 15px 0;
-            width: 90%;
-            max-width: 500px;
-            scrollbar-width: thin;
-            scrollbar-color: #006A4E #f0f0f0;
-        }
-
-        .frame-selection::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .frame-selection::-webkit-scrollbar-track {
-            background: #f0f0f0;
-            border-radius: 10px;
-        }
-
-        .frame-selection::-webkit-scrollbar-thumb {
-            background: #006A4E;
-            border-radius: 10px;
-        }
-
-        .frame-option {
-            flex: 0 0 auto;
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .frame-option:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .frame-option.active {
-            border-color: #F42A41;
-            transform: scale(1.05);
-        }
-
-        .frame-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        
+        /* Controls */
         .controls {
             display: flex;
             justify-content: center;
@@ -311,11 +250,11 @@
             width: 100%;
             max-width: 500px;
         }
-
+        
         #upload {
             display: none;
         }
-
+        
         .control-btn {
             display: flex;
             align-items: center;
@@ -330,22 +269,56 @@
             font-size: 20px;
             color: white;
         }
+        
+        .upload-btn {
+            background: #006A4E; /* Bangladesh green */
+        }
+        
+        .upload-btn:hover {
+            background: #005a40;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 106, 78, 0.4);
+        }
+        
+        #reset {
+            background: #C21807; /* Bangladesh red */
+        }
+        
+        #reset:hover {
+            background: #a21406;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(194, 24, 7, 0.3);
+        }
+        
+        #download {
+            background: #25d366;
+        }
+        
+        #download:hover {
+            background: #20bd5c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        #move-up, #move-down {
+            background: #ff9800;
+        }
+        
+        #move-up:hover, #move-down:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+        }
 
-        .upload-btn { background: #006A4E; }
-        .upload-btn:hover { background: #00503a; transform: translateY(-2px); }
-
-        #reset { background: #F42A41; }
-        #reset:hover { background: #d32035; transform: translateY(-2px); }
-
-        #download { background: #25D366; }
-        #download:hover { background: #1eb859; transform: translateY(-2px); }
-
-        #move-up, #move-down { background: #FF9800; }
-        #move-up:hover, #move-down:hover { background: #f57c00; transform: translateY(-2px); }
-
-        #share { background: #6A5ACD; }
-        #share:hover { background: #5a4dbd; transform: translateY(-2px); }
-
+        #share {
+            background: #6a5acd;
+        }
+        
+        #share:hover {
+            background: #5a4dbd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(106, 90, 205, 0.3);
+        }
+        
         #zoom-level {
             margin-top: 10px;
             font-size: 16px;
@@ -356,7 +329,8 @@
             padding: 5px 15px;
             border-radius: 20px;
         }
-
+        
+        /* Footer */
         .footer {
             background: rgba(255, 255, 255, 0.9);
             padding: 12px 20px;
@@ -364,13 +338,14 @@
             margin-top: auto;
             box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
         }
-
+        
         .footer p {
             font-size: 14px;
             color: #006A4E;
             font-weight: 500;
         }
-
+        
+        /* Crop Modal */
         .modal {
             display: none;
             position: fixed;
@@ -383,7 +358,7 @@
             justify-content: center;
             align-items: center;
         }
-
+        
         .modal-content {
             background-color: white;
             padding: 20px;
@@ -394,18 +369,18 @@
             overflow: auto;
             text-align: center;
         }
-
+        
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
-
+        
         .modal-header h2 {
             color: #006A4E;
         }
-
+        
         .close-btn {
             background: none;
             border: none;
@@ -413,7 +388,7 @@
             cursor: pointer;
             color: #666;
         }
-
+        
         #crop-image-container {
             width: 100%;
             height: 300px;
@@ -425,6 +400,7 @@
             align-items: center;
         }
 
+        /* Loading Spinner */
         .loading-spinner {
             width: 40px;
             height: 40px;
@@ -438,32 +414,38 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
+        
         .crop-controls {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 15px;
         }
-
+        
         .crop-btn {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: 600;
+        }
+        
+        #crop-skip {
+            background-color: #9e9e9e;
+            color: white;
+        }
+        
+        #crop-confirm {
+            background-color: #006A4E;
             color: white;
         }
 
-        #crop-skip { background-color: #9e9e9e; }
-        #crop-confirm { background-color: #25D366; }
-
+        /* Share Modal */
         .share-options {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 20px;
-            flex-wrap: wrap;
         }
 
         .share-btn {
@@ -492,29 +474,116 @@
             color: white;
         }
 
-        .fb-share { background: #3b5998; }
-        .whatsapp-share { background: #25D366; }
-        .twitter-share { background: #1DA1F2; }
-        .telegram-share { background: #0088cc; }
-
-        @media (min-width: 901px) {
-            .mobile-layout { display: none; }
-            .desktop-layout { display: flex; }
+        .fb-share {
+            background: #3b5998;
         }
 
+        .whatsapp-share {
+            background: #25D366;
+        }
+
+        .twitter-share {
+            background: #1DA1F2;
+        }
+
+        .telegram-share {
+            background: #0088cc;
+        }
+        
+        /* Mobile Styles */
         @media (max-width: 900px) {
-            .nav-buttons { display: none; }
-            .mobile-menu-btn { display: block; }
-            .app-bar h1 { font-size: 1.4rem; }
+            .nav-buttons {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .app-bar h1 {
+                font-size: 1.4rem;
+            }
+            
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .frame-panel {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 500px;
+                flex-direction: row;
+                overflow-x: auto;
+                overflow-y: hidden;
+                margin-right: 0;
+                margin-bottom: 20px;
+                padding: 10px;
+                max-height: 120px;
+            }
+            
+            .frame-title {
+                display: none;
+            }
+            
+            .frame-option {
+                width: 80px;
+                height: 80px;
+                flex: 0 0 auto;
+            }
         }
 
         @media (max-width: 600px) {
-            .app-bar h1 { font-size: 1.2rem; }
-            .app-logo { height: 30px; }
-            .control-btn { width: 45px; height: 45px; font-size: 18px; }
-            .frame-option { width: 70px; height: 70px; }
-            .modal-content { width: 95%; padding: 15px; }
-            #crop-image-container { height: 250px; }
+            .app-bar h1 {
+                font-size: 1.2rem;
+            }
+            
+            .app-logo {
+                height: 30px;
+            }
+            
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            
+            .frame-option {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+            
+            #crop-image-container {
+                height: 250px;
+            }
+
+            .share-options {
+                flex-wrap: wrap;
+            }
+        }
+        
+        /* Scrollbar styling */
+        .frame-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .frame-panel::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+        
+        .frame-panel::-webkit-scrollbar-thumb {
+            background: #006A4E;
+            border-radius: 10px;
+        }
+        
+        .frame-panel::-webkit-scrollbar-thumb:hover {
+            background: #C21807;
         }
     </style>
 </head>
@@ -530,118 +599,113 @@
                 <i class="fas fa-bars"></i>
             </button>
             <img src="/dinlogo.png" alt="Logo" class="app-logo">
-            <h1>RU Photo Frames</h1>
+            <h1>HaVote Photo Frames</h1>
         </div>
+        
         <div class="nav-buttons">
-            <a href="https://sujanpro.netlify.app" class="nav-btn" target="_blank"><i class="fas fa-home"></i> Home</a>
-            <a href="https://fb.com/prodhan24" class="nav-btn" target="_blank"><i class="fab fa-facebook"></i> Fb Page</a>
-            <a href="https://www.facebook.com/groups/" class="nav-btn" target="_blank"><i class="fab fa-facebook"></i> Fb Group</a>
-            <a href="https://www.youtube.com/" class="nav-btn" target="_blank"><i class="fab fa-youtube"></i> Youtube</a>
+            <a href="https://sujanpro.netlify.app" class="nav-btn" target="_blank">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="https://fb.com/prodhan24" class="nav-btn" target="_blank">
+                <i class="fab fa-facebook"></i> Fb Page
+            </a>
+            <a href="https://www.facebook.com/groups/" class="nav-btn" target="_blank">
+                <i class="fab fa-facebook"></i> Fb Group
+            </a>
+            <a href="https://www.youtube.com/" class="nav-btn" target="_blank">
+                <i class="fab fa-youtube"></i> Youtube
+            </a>
         </div>
     </div>
 
-    <!-- Mobile Nav -->
+    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobile-nav">
-        <a href="https://sujanpro.netlify.app" class="mobile-nav-btn" target="_blank"><i class="fas fa-home"></i> Home</a>
-        <a href="https://fb.com/prodhan24" class="mobile-nav-btn" target="_blank"><i class="fab fa-facebook"></i> Facebook Page</a>
-        <a href="https://www.facebook.com/groups/" class="mobile-nav-btn" target="_blank"><i class="fab fa-facebook"></i> Facebook Group</a>
-        <a href="https://www.youtube.com/" class="mobile-nav-btn" target="_blank"><i class="fab fa-youtube"></i> YouTube Channel</a>
+        <a href="https://sujanpro.netlify.app" class="mobile-nav-btn" target="_blank">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="https://fb.com/prodhan24" class="mobile-nav-btn" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook Page
+        </a>
+        <a href="https://www.facebook.com/groups/" class="mobile-nav-btn" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook Group
+        </a>
+        <a href="https://www.youtube.com/" class="mobile-nav-btn" target="_blank">
+            <i class="fab fa-youtube"></i> YouTube Channel
+        </a>
     </div>
-
+    
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Desktop Layout -->
-        <div class="desktop-layout">
-            <div class="frame-panel">
-                <div class="frame-option-vertical active" data-frame="https://i.postimg.cc/jqWt9hmj/11.png">
-                    <img src="https://i.postimg.cc/jqWt9hmj/11.png" alt="Frame 1">
-                </div>
-                <div class="frame-option-vertical" data-frame="https://i.postimg.cc/your-frame/2.png">
-                    <img src="https://i.postimg.cc/your-frame/2.png" alt="Frame 2">
-                </div>
-                <div class="frame-option-vertical" data-frame="https://i.postimg.cc/your-frame/3.png">
-                    <img src="https://i.postimg.cc/your-frame/3.png" alt="Frame 3">
-                </div>
-                <div class="frame-option-vertical" data-frame="https://i.postimg.cc/your-frame/4.png">
-                    <img src="https://i.postimg.cc/your-frame/4.png" alt="Frame 4">
-                </div>
-                <div class="frame-option-vertical" data-frame="https://i.postimg.cc/your-frame/5.png">
-                    <img src="https://i.postimg.cc/your-frame/5.png" alt="Frame 5">
-                </div>
-                <div class="frame-option-vertical" data-frame="https://i.postimg.cc/your-frame/6.png">
-                    <img src="https://i.postimg.cc/your-frame/6.png" alt="Frame 6">
-                </div>
-                <div class="frame-option-vertical" data-frame="https://i.postimg.cc/your-frame/7.png">
-                    <img src="https://i.postimg.cc/your-frame/7.png" alt="Frame 7">
-                </div>
+        <!-- Frame Selection Panel -->
+        <div class="frame-panel">
+            <div class="frame-title">Select Frame</div>
+            <div class="frame-option active" data-frame="1.png">
+                <img src="1.png" alt="Frame 1">
             </div>
-            <div class="preview-section">
-                <div id="container">
-                    <div id="photo-wrapper">
-                        <img id="user-photo" src="" alt="Your Photo">
-                    </div>
-                    <img id="frame" src="https://i.postimg.cc/jqWt9hmj/11.png" alt="Frame">
-                </div>
-                <div class="controls">
-                    <label for="upload" class="control-btn upload-btn" title="Upload Photo"><i class="fas fa-upload"></i></label>
-                    <input type="file" id="upload" accept="image/*">
-                    <button id="move-up" class="control-btn" title="Move Up"><i class="fas fa-arrow-up"></i></button>
-                    <button id="move-down" class="control-btn" title="Move Down"><i class="fas fa-arrow-down"></i></button>
-                    <button id="reset" class="control-btn" title="Reset"><i class="fas fa-redo"></i></button>
-                    <button id="download" class="control-btn" title="Download"><i class="fas fa-download"></i></button>
-                    <button id="share" class="control-btn" title="Share"><i class="fas fa-share-alt"></i></button>
-                </div>
-                <div id="zoom-level">Zoom: 100%</div>
+            <div class="frame-option" data-frame="2.png">
+                <img src="2.png" alt="Frame 2">
+            </div>
+            <div class="frame-option" data-frame="3.png">
+                <img src="3.png" alt="Frame 3">
+            </div>
+            <div class="frame-option" data-frame="4.png">
+                <img src="4.png" alt="Frame 4">
+            </div>
+            <div class="frame-option" data-frame="5.png">
+                <img src="5.png" alt="Frame 5">
+            </div>
+            <div class="frame-option" data-frame="6.png">
+                <img src="6.png" alt="Frame 6">
+            </div>
+            <div class="frame-option" data-frame="7.png">
+                <img src="7.png" alt="Frame 7">
             </div>
         </div>
-
-        <!-- Mobile Layout -->
-        <div class="mobile-layout">
+        
+        <!-- Preview Area -->
+        <div class="preview-area">
             <div id="container">
                 <div id="photo-wrapper">
                     <img id="user-photo" src="" alt="Your Photo">
                 </div>
                 <img id="frame" src="https://i.postimg.cc/jqWt9hmj/11.png" alt="Frame">
             </div>
-            <div class="frame-selection">
-                <div class="frame-option active" data-frame="https://i.postimg.cc/jqWt9hmj/11.png">
-                    <img src="https://i.postimg.cc/jqWt9hmj/11.png" alt="Frame 1">
-                </div>
-                <div class="frame-option" data-frame="https://i.postimg.cc/your-frame/2.png">
-                    <img src="https://i.postimg.cc/your-frame/2.png" alt="Frame 2">
-                </div>
-                <div class="frame-option" data-frame="https://i.postimg.cc/your-frame/3.png">
-                    <img src="https://i.postimg.cc/your-frame/3.png" alt="Frame 3">
-                </div>
-                <div class="frame-option" data-frame="https://i.postimg.cc/your-frame/4.png">
-                    <img src="https://i.postimg.cc/your-frame/4.png" alt="Frame 4">
-                </div>
-                <div class="frame-option" data-frame="https://i.postimg.cc/your-frame/5.png">
-                    <img src="https://i.postimg.cc/your-frame/5.png" alt="Frame 5">
-                </div>
-                <div class="frame-option" data-frame="https://i.postimg.cc/your-frame/6.png">
-                    <img src="https://i.postimg.cc/your-frame/6.png" alt="Frame 6">
-                </div>
-                <div class="frame-option" data-frame="https://i.postimg.cc/your-frame/7.png">
-                    <img src="https://i.postimg.cc/your-frame/7.png" alt="Frame 7">
-                </div>
-            </div>
+            
+            <!-- Controls -->
             <div class="controls">
-                <label for="upload" class="control-btn upload-btn" title="Upload Photo"><i class="fas fa-upload"></i></label>
+                <label for="upload" class="control-btn upload-btn" title="Upload Photo">
+                    <i class="fas fa-upload"></i>
+                </label>
                 <input type="file" id="upload" accept="image/*">
-                <button id="move-up" class="control-btn" title="Move Up"><i class="fas fa-arrow-up"></i></button>
-                <button id="move-down" class="control-btn" title="Move Down"><i class="fas fa-arrow-down"></i></button>
-                <button id="reset" class="control-btn" title="Reset"><i class="fas fa-redo"></i></button>
-                <button id="download" class="control-btn" title="Download"><i class="fas fa-download"></i></button>
-                <button id="share" class="control-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+                
+                <button id="move-up" class="control-btn" title="Move Up">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+                
+                <button id="move-down" class="control-btn" title="Move Down">
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+                
+                <button id="reset" class="control-btn" title="Reset">
+                    <i class="fas fa-redo"></i>
+                </button>
+                
+                <button id="download" class="control-btn" title="Download">
+                    <i class="fas fa-download"></i>
+                </button>
+
+                <button id="share" class="control-btn" title="Share">
+                    <i class="fas fa-share-alt"></i>
+                </button>
             </div>
+            
             <div id="zoom-level">Zoom: 100%</div>
         </div>
     </div>
-
+    
     <!-- Footer -->
     <div class="footer">
-        <p>© 2025 RU PhotoFrames. All rights reserved.</p>
+        <p>© 2026 HaVote PhotoFrames. All rights reserved.</p>
     </div>
 
     <!-- Crop Modal -->
@@ -670,22 +734,30 @@
                 <h2>Share Your Creation</h2>
                 <button class="close-btn" id="close-share-modal">×</button>
             </div>
-            <p>Share your framed photo or the RU -Photo Frames app with your friends!</p>
+            <p>Share your framed photo or the HaVote -Photo Frames app with your friends!</p>
             <div class="share-options">
                 <a href="#" class="share-btn" id="fb-share">
-                    <div class="share-icon fb-share"><i class="fab fa-facebook-f"></i></div>
+                    <div class="share-icon fb-share">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
                     <span>Facebook</span>
                 </a>
                 <a href="#" class="share-btn" id="whatsapp-share">
-                    <div class="share-icon whatsapp-share"><i class="fab fa-whatsapp"></i></div>
+                    <div class="share-icon whatsapp-share">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
                     <span>WhatsApp</span>
                 </a>
                 <a href="#" class="share-btn" id="twitter-share">
-                    <div class="share-icon twitter-share"><i class="fab fa-twitter"></i></div>
+                    <div class="share-icon twitter-share">
+                        <i class="fab fa-twitter"></i>
+                    </div>
                     <span>Twitter</span>
                 </a>
                 <a href="#" class="share-btn" id="telegram-share">
-                    <div class="share-icon telegram-share"><i class="fab fa-telegram"></i></div>
+                    <div class="share-icon telegram-share">
+                        <i class="fab fa-telegram"></i>
+                    </div>
                     <span>Telegram</span>
                 </a>
             </div>
@@ -694,6 +766,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script>
+        // Initialize Facebook SDK
         window.fbAsyncInit = function() {
             FB.init({
                 appId: 'YOUR_APP_ID',
@@ -703,6 +776,7 @@
             });
         };
 
+        // Clean URL
         if (window.history.replaceState) {
             const cleanURL = window.location.href.split('?')[0];
             window.history.replaceState(null, null, cleanURL);
@@ -718,6 +792,7 @@
         const shareButton = document.getElementById('share');
         const frame = document.getElementById('frame');
         const zoomLevel = document.getElementById('zoom-level');
+        const frameOptions = document.querySelectorAll('.frame-option');
         const cropModal = document.getElementById('crop-modal');
         const cropImage = document.getElementById('crop-image');
         const cropLoading = document.getElementById('crop-loading');
@@ -728,9 +803,10 @@
         const closeShareModal = document.getElementById('close-share-modal');
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileNav = document.getElementById('mobile-nav');
-
-        const frameOptionsMobile = document.querySelectorAll('.frame-option');
-        const frameOptionsDesktop = document.querySelectorAll('.frame-option-vertical');
+        const fbShare = document.getElementById('fb-share');
+        const whatsappShare = document.getElementById('whatsapp-share');
+        const twitterShare = document.getElementById('twitter-share');
+        const telegramShare = document.getElementById('telegram-share');
 
         let cropper;
         let posX = 0;
@@ -745,11 +821,10 @@
         let initialPy = 0;
         let currentImageSrc = '';
 
+        // Set up share URLs
         const currentUrl = encodeURIComponent(window.location.href);
-        const shareText = encodeURIComponent("Check out my framed photo made with RU Photo Frames! Create your own at");
-        const whatsappShare = document.getElementById('whatsapp-share');
-        const twitterShare = document.getElementById('twitter-share');
-        const telegramShare = document.getElementById('telegram-share');
+        const shareText = encodeURIComponent("Check out my framed photo made with HaVote Photo Frames! Create your own at");
+
         whatsappShare.href = `https://wa.me/?text=${shareText}%20${currentUrl}`;
         twitterShare.href = `https://twitter.com/intent/tweet?text=${shareText}%20${currentUrl}`;
         telegramShare.href = `https://t.me/share/url?url=${currentUrl}&text=${shareText}`;
@@ -761,40 +836,40 @@
 
         function resetPhoto() {
             if (!userPhoto.src) return;
+            
             const wrapperWidth = photoWrapper.clientWidth;
             const wrapperHeight = photoWrapper.clientHeight;
             const imgWidth = userPhoto.naturalWidth;
             const imgHeight = userPhoto.naturalHeight;
+
             scale = Math.max(wrapperWidth / imgWidth, wrapperHeight / imgHeight);
             posX = (wrapperWidth - imgWidth * scale) / 2;
             posY = (wrapperHeight - imgHeight * scale) / 2;
             updateTransform();
         }
 
-        function selectFrame(frameSrc) {
-            frame.src = frameSrc;
-            frameOptionsMobile.forEach(opt => opt.classList.remove('active'));
-            frameOptionsDesktop.forEach(opt => opt.classList.remove('active'));
-            const allOptions = [...frameOptionsMobile, ...frameOptionsDesktop];
-            const clickedOption = allOptions.find(opt => opt.getAttribute('data-frame') === frameSrc);
-            if (clickedOption) clickedOption.classList.add('active');
-        }
-
-        frameOptionsMobile.forEach(option => {
+        // Frame selection
+        frameOptions.forEach(option => {
             option.addEventListener('click', () => {
-                selectFrame(option.getAttribute('data-frame'));
+                frameOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                frame.src = option.getAttribute('data-frame');
             });
         });
 
-        frameOptionsDesktop.forEach(option => {
-            option.addEventListener('click', () => {
-                selectFrame(option.getAttribute('data-frame'));
-            });
+        moveUpButton.addEventListener('click', () => {
+            posY += 10;
+            updateTransform();
         });
 
-        moveUpButton.addEventListener('click', () => { posY += 10; updateTransform(); });
-        moveDownButton.addEventListener('click', () => { posY -= 10; updateTransform(); });
-        shareButton.addEventListener('click', () => { shareModal.style.display = 'flex'; });
+        moveDownButton.addEventListener('click', () => {
+            posY -= 10;
+            updateTransform();
+        });
+
+        shareButton.addEventListener('click', () => {
+            shareModal.style.display = 'flex';
+        });
 
         mobileMenuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -802,10 +877,11 @@
         });
 
         mobileNav.querySelectorAll('.mobile-nav-btn').forEach(btn => {
-            btn.addEventListener('click', () => mobileNav.classList.remove('open'));
+            btn.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
         });
 
-        const fbShare = document.getElementById('fb-share');
         fbShare.addEventListener('click', (e) => {
             e.preventDefault();
             if (!userPhoto.src) {
@@ -813,67 +889,7 @@
                 shareModal.style.display = 'none';
                 return;
             }
-            alert('Sharing via Facebook requires manual upload after download due to browser restrictions.');
-            shareModal.style.display = 'none';
-        });
 
-        upload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    currentImageSrc = ev.target.result;
-                    cropLoading.style.display = 'block';
-                    cropImage.style.display = 'none';
-                    cropModal.style.display = 'flex';
-                    setTimeout(() => {
-                        cropImage.src = currentImageSrc;
-                        cropImage.onload = () => {
-                            cropLoading.style.display = 'none';
-                            cropImage.style.display = 'block';
-                            if (cropper) cropper.destroy();
-                            cropper = new Cropper(cropImage, {
-                                aspectRatio: 1,
-                                viewMode: 1,
-                                guides: true,
-                                background: false,
-                                autoCropArea: 0.8
-                            });
-                        };
-                    }, 300);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        closeCropModal.addEventListener('click', () => {
-            cropModal.style.display = 'none';
-            if (cropper) cropper.destroy();
-        });
-
-        cropSkip.addEventListener('click', () => {
-            userPhoto.src = currentImageSrc;
-            cropModal.style.display = 'none';
-            if (cropper) cropper.destroy();
-        });
-
-        cropConfirm.addEventListener('click', () => {
-            if (cropper) {
-                const canvas = cropper.getCroppedCanvas({ width: 800, height: 800 });
-                userPhoto.src = canvas.toDataURL('image/jpeg', 0.9);
-                cropModal.style.display = 'none';
-                cropper.destroy();
-            }
-        });
-
-        userPhoto.addEventListener('load', resetPhoto);
-        resetButton.addEventListener('click', resetPhoto);
-
-        downloadButton.addEventListener('click', () => {
-            if (!userPhoto.src) {
-                alert('Please upload a photo first!');
-                return;
-            }
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             const size = 800;
@@ -900,25 +916,187 @@
                 frameImg.src = frame.src;
                 frameImg.onload = () => {
                     ctx.drawImage(frameImg, 0, 0, size, size);
+                    const imageDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+
                     const link = document.createElement('a');
-                    link.download = 'RU_PHOTO_frame.png';
-                    link.href = canvas.toDataURL('image/png');
+                    link.download = 'HaVote-Photo-frame.jpg';
+                    link.href = imageDataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    FB.ui({
+                        method: 'share',
+                        href: window.location.href,
+                        quote: 'Check out my framed photo made with HaVotePhoto Frames! Create your own now!',
+                    }, function(response) {
+                        if (response && !response.error_message) {
+                            alert('Your photo has been downloaded. You can upload it to Facebook from the share dialog that just opened.');
+                        } else {
+                            alert('Error sharing to Facebook. Please try again or upload the downloaded image manually.');
+                        }
+                    });
+
+                    shareModal.style.display = 'none';
+                };
+                
+                frameImg.onerror = () => {
+                    const link = document.createElement('a');
+                    link.download = 'HaVotePhoto-frame.jpg';
+                    link.href = canvas.toDataURL('image/jpeg', 0.9);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    FB.ui({
+                        method: 'share',
+                        href: window.location.href,
+                        quote: 'Check out my framed photo made with HaVotePhoto Frames! Create your own now!',
+                    }, function(response) {
+                        if (response && !response.error_message) {
+                            alert('Your photo has been downloaded. You can upload it to Facebook from the share dialog that just opened.');
+                        } else {
+                            alert('Error sharing to Facebook. Please try again or upload the downloaded image manually.');
+                        }
+                    });
+
+                    shareModal.style.display = 'none';
+                };
+            };
+            
+            img.onerror = () => {
+                alert('Error loading the image. Please try again.');
+                shareModal.style.display = 'none';
+            };
+        });
+
+        upload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    currentImageSrc = ev.target.result;
+                    
+                    // Show loader
+                    cropLoading.style.display = 'block';
+                    cropImage.style.display = 'none';
+
+                    cropModal.style.display = 'flex';
+                    
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+
+                    // Simulate small delay for UX clarity
+                    setTimeout(() => {
+                        cropImage.src = currentImageSrc;
+                        cropImage.onload = () => {
+                            cropLoading.style.display = 'none';
+                            cropImage.style.display = 'block';
+
+                            cropper = new Cropper(cropImage, {
+                                aspectRatio: 1,
+                                viewMode: 1,
+                                guides: true,
+                                background: false,
+                                autoCropArea: 0.8
+                            });
+                        };
+                    }, 300);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        closeCropModal.addEventListener('click', () => {
+            cropModal.style.display = 'none';
+            if (cropper) {
+                cropper.destroy();
+            }
+        });
+
+        cropSkip.addEventListener('click', () => {
+            userPhoto.src = currentImageSrc;
+            cropModal.style.display = 'none';
+            if (cropper) {
+                cropper.destroy();
+            }
+        });
+
+        cropConfirm.addEventListener('click', () => {
+            if (cropper) {
+                const canvas = cropper.getCroppedCanvas({
+                    width: 800,
+                    height: 800,
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high'
+                });
+                userPhoto.src = canvas.toDataURL('image/jpeg', 0.9);
+                cropModal.style.display = 'none';
+                cropper.destroy();
+            }
+        });
+
+        userPhoto.addEventListener('load', resetPhoto);
+        resetButton.addEventListener('click', resetPhoto);
+
+        downloadButton.addEventListener('click', () => {
+            if (!userPhoto.src) {
+                alert('Please upload a photo first!');
+                return;
+            }
+            
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const size = 800;
+            canvas.width = size;
+            canvas.height = size;
+
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.src = userPhoto.src;
+            img.onload = () => {
+                const wrapperWidth = photoWrapper.clientWidth;
+                const scaleFactor = size / wrapperWidth;
+                const scaledWidth = img.width * scale * scaleFactor;
+                const scaledHeight = img.height * scale * scaleFactor;
+                const offsetX = posX * scaleFactor;
+                const offsetY = posY * scaleFactor;
+                
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, size, size);
+                ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+
+                const frameImg = new Image();
+                frameImg.crossOrigin = 'anonymous';
+                frameImg.src = frame.src;
+                frameImg.onload = () => {
+                    ctx.drawImage(frameImg, 0, 0, size, size);
+                    
+                    const link = document.createElement('a');
+                    link.download = 'HaVote_PHOTO_frame.png';
+                    link.href = canvas.toDataURL('image/png', 1.0);
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                 };
+                
                 frameImg.onerror = () => {
                     const link = document.createElement('a');
-                    link.download = 'RU_PHOTO_frame.png';
-                    link.href = canvas.toDataURL('image/png');
+                    link.download = 'HaVote_PHOTO_frame.png';
+                    link.href = canvas.toDataURL('image/png', 1.0);
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                 };
             };
-            img.onerror = () => alert('Error loading the image.');
+            
+            img.onerror = () => {
+                alert('Error loading the image. Please try again.');
+            };
         });
 
+        // Drag & Zoom handlers
         photoWrapper.addEventListener('mousedown', (e) => {
             e.preventDefault();
             isDragging = true;
@@ -938,7 +1116,9 @@
             }
         });
 
-        document.addEventListener('mouseup', () => { isDragging = false; });
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
 
         photoWrapper.addEventListener('wheel', (e) => {
             e.preventDefault();
@@ -963,12 +1143,13 @@
                 startY = e.touches[0].clientY;
             } else if (e.touches.length === 2) {
                 isPinching = true;
-                const t1 = e.touches[0], t2 = e.touches[1];
-                initialDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
                 initialScale = scale;
-                const rect = photoWrapper.getBoundingClientRect();
-                const midX = (t1.clientX + t2.clientX) / 2 - rect.left;
-                const midY = (t1.clientY + t2.clientY) / 2 - rect.top;
+                const wrapperRect = photoWrapper.getBoundingClientRect();
+                const midX = (touch1.clientX + touch2.clientX) / 2 - wrapperRect.left;
+                const midY = (touch1.clientY + touch2.clientY) / 2 - wrapperRect.top;
                 initialPx = (midX - posX) / scale;
                 initialPy = (midY - posY) / scale;
             }
@@ -985,12 +1166,14 @@
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
             } else if (e.touches.length === 2 && isPinching) {
-                const t1 = e.touches[0], t2 = e.touches[1];
-                const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const rect = photoWrapper.getBoundingClientRect();
-                const midX = (t1.clientX + t2.clientX) / 2 - rect.left;
-                const midY = (t1.clientY + t2.clientY) / 2 - rect.top;
-                scale = Math.max(0.1, Math.min(3, initialScale * (dist / initialDistance)));
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+                const oldScale = scale;
+                scale = Math.max(0.1, Math.min(3, initialScale * (currentDistance / initialDistance)));
+                const wrapperRect = photoWrapper.getBoundingClientRect();
+                const midX = (touch1.clientX + touch2.clientX) / 2 - wrapperRect.left;
+                const midY = (touch1.clientY + touch2.clientY) / 2 - wrapperRect.top;
                 posX = midX - initialPx * scale;
                 posY = midY - initialPy * scale;
                 updateTransform();
@@ -1003,9 +1186,18 @@
         });
 
         window.addEventListener('click', (e) => {
-            if (e.target === cropModal) { cropModal.style.display = 'none'; if (cropper) cropper.destroy(); }
-            if (e.target === shareModal) shareModal.style.display = 'none';
-            if (e.target !== mobileMenuToggle && !mobileNav.contains(e.target)) mobileNav.classList.remove('open');
+            if (e.target === cropModal) {
+                cropModal.style.display = 'none';
+                if (cropper) {
+                    cropper.destroy();
+                }
+            }
+            if (e.target === shareModal) {
+                shareModal.style.display = 'none';
+            }
+            if (e.target !== mobileMenuToggle && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
+            }
         });
     </script>
 </body>
